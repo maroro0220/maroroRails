@@ -1,0 +1,12 @@
+<h1>New Blog</h1>
+
+<!-- <%= render 'form' %>
+
+<%= link_to 'Back', blogs_path %>
+-->
+<%= form_tag("/posts", method: "post", multipart: true) do %>
+  <%= text_field_tag("post[title]") %> <br />
+  <%= text_area_tag("post[content]") %> <br />
+  <%= file_field_tag("post[postimage]") %><br />
+  <%= submit_tag %>
+<% end %>

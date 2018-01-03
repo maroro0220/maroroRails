@@ -1,0 +1,53 @@
+<!-- <!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Instagramaroro</title>
+  </head>
+  <body>
+    <h1>HI Instagramaroro</h1>
+    <table class="table">
+      <tr align="center">
+        <th>Title</th>
+        <th>Username</th>
+        <th>Content</th>
+        <th>img</th>
+        <th colspan = "3" >Action</th>
+      </tr>
+
+    <% @posts.in_groups_of(3,false).each do |group|%>
+    <div class = "row mt-3">
+      <%group.each do |p|%>
+    <tr>
+     <td><%=p.title%></td>
+     <td><%=p.username%></td>
+     <td> <%=p.content%> </td>
+     <div class = "col-4">
+     <td><img src="<%=p.postimage%>" class = "img-fluid"></td>
+     </div>
+   <td><a href="/posts/<%=p.id%>"><button type="button" class="btn btn-info">show</button></a></td>
+     <td><a href="/posts/<%=p.id%>/edit"><button type="button" class="btn btn-info">Edit</button></a></td>
+     <td><a href="/posts/<%=p.id%>" data-method="delete" data-confirm="Are you sure?"><button type="button" class="btn btn-info">Delete</button></a></td>
+   </tr>
+    <%end%>
+  </div>
+    <%end%>
+  </table>
+    <a href="/posts/new"><button type="button" class="btn btn-info">new</button></a>
+  </body>
+</html> -->
+
+
+<%= link_to "새글쓰기", posts_new_path %>
+
+<% @posts.in_groups_of(3, false).each do |group| %>
+  <div class="row mt-3">
+  <% group.each do |post| %>
+    <div class="col-4">
+      <a href="/posts/<%=post.id%>">
+        <img src="<%=post.postimage.thumb%>" class="img-fluid">
+      </a>
+    </div>
+  <% end %>
+  </div>
+<% end %>

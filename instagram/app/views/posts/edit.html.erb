@@ -1,0 +1,25 @@
+<form  action="/posts/<%=@post.id%>" method="post">
+  <!-- <!-  PUT할 때 꼮 POST로 써줘야함 -->
+  <div class="form-group">
+    <label for="exampleFormControlInput1">Title</label>
+    <input type="text" class="form-control"  value="<%=@post.title%>" name="title">
+    <label for="exampleFormControlInput1">Username</label>
+    <input type="text" class="form-control"  value="<%=@post.username%>" name="username" disabled>
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">Textarea</label>
+    <textarea class="form-control" rows="3" name="content"><%=@post.content%></textarea>
+  </div>
+  <input type="hidden" name="authenticity_token"  value="<%= form_authenticity_token %>"/><br />
+  <input type="hidden" name="_method"  value="put"/><br />
+  <a href="/"><button type="button" class="btn btn-info">Home</button></a>
+  <input type="submit" value="edit">
+</form>
+
+
+<%= form_tag("/posts/#{@post.id}", method: "put", multipart: true) do %>
+  <%=text_field_tag("post[title]",@post.title)%><br />
+  <%=text_area_tag("post[content]",@post.content)%><br />
+  <%= file_field_tag("post[postimage]",)%><br />
+  <%=submit_tag%>
+<%end%>
