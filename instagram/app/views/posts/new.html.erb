@@ -15,9 +15,30 @@
 
 
 <%= form_tag("/posts", method: "post", multipart: true) do %>
-  <%= text_field_tag("post[title]") %> <br />
-  <%= text_area_tag("post[content]") %> <br />
-  <%= file_field_tag("post[postimage]") %><br />
-  <!-- 글 이외에 이미지나 파일들 받으려면 multipart: true 해줘야함-->
-  <%= submit_tag %>
+  <!-- <% text_field_tag("post[title]")%> <hr />
+  <%= text_area_tag("post[content]") %> <hr />
+  <%= file_field_tag("post[postimage]") %><hr />
+  <!- 글 이외에 이미지나 파일들 받으려면 multipart: true 해줘야함->
+  <%= submit_tag %> -->
+
+  <div class ="form-group">
+    <%=label_tag(:post_title, "title")%>
+    <%= text_field_tag("post[title]","",class: "form-control")%> <hr />
+  </div>
+  <div class ="form-group">
+    <%=label_tag(:post_username, "username")%>
+    <!-- <%= text_field_tag("post[username]","#{current_user.username}",class: "form-control")%> <hr /> -->
+      
+  </div>
+  <div class ="form-group">
+    <%=label_tag(:post_content, "content")%>
+    <%= text_area_tag("post[content]","",class: "form-control") %> <hr />
+  </div>
+  <div class ="form-group">
+    <%=label_tag(:post_postimage, "attachedfile")%>
+    <%= file_field_tag("post[postimage]", class: "form-control")%><hr />
+    <!-- <%= submit_tag %> -->
+    <%=button_tag("submit",class:"btn btn-info")%>
+  </div>
+
 <% end %>

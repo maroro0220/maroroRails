@@ -9,7 +9,7 @@
     <label for="exampleFormControlInput1">Title</label>
     <input type="text" class="form-control"  value="<%=@post.title%>" name="title" disabled>
     <label for="exampleFormControlInput1">Username</label>
-    <input type="text" class="form-control"  value="<%=@post.username%>" name="username" disabled>
+    <input type="text" class="form-control"  value="<%=@post.user.username%>" name="current_user.username" disabled>
   </div>
 
   <div class="form-group">
@@ -21,7 +21,13 @@
   </div>
 
     <a href="/"><button type="button" class="btn btn-info">Home</button></a>
-    <input class="btn btn-info" type="submit" value="edit">
-     <a href="/posts/<%=@post.id%>" data-confirm="Are you sure?" data-method="delete"><button type="button" class="btn btn-info">Delete</button></a>
 
+     <% if can? :update, @post %>
+         <input class="btn btn-info" type="submit" value="edit">
+        <!-- <p><a href="/posts/<%=@post.id%>/edit">수정</a></p> -->
+      <% end %>
+      <% if can? :destroy, @post %>
+        <a href="/posts/<%=@post.id%>" data-confirm="Are you sure?" data-method="delete"><button type="button" class="btn btn-info">Delete</button></a>
+        <!-- <p><a href="/posts/<%=@post.id%>" data-method="delete" data-confirm="삭제할래?">삭제</a></p> -->
+    <% end %>
 </form>

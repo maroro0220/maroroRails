@@ -11,12 +11,29 @@
 
 </head>
 <body>
-<%=  render 'layouts/navbar'%>
-<form action="/">
+<%=render 'layouts/navbar'%>
+<hr /><div class = "container-fluid px-5 pb-5">
+<!-- <form action="/">
   <input type="text" name="post[q]"/>
   <input type="submit" />
-</form>
- <div class = "pt-5 container">
+</form> -->
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
+
+<%if user_signed_in?%>
+  <li>
+    <%=current_user.email%>님이 login
+    <%=link_to('logout',destroy_user_session_path,method: :delete)%>
+  </li>
+  <%else%>
+  <h4>
+    <li>
+      <%= link_to('login',new_user_session_path)%>
+      /
+      <%= link_to('sign in',new_user_registration_path)%>
+    </li>
+  </h4>
+<%end%>
 <%= yield %>
 </div>
 <script defer src="https://use.fontawesome.com/releases/v5.0.2/js/all.js"></script>
